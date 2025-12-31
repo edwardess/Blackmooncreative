@@ -17,7 +17,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Meta Lab Marketing",
+  title: "Black Moon Creative",
   description: "Helping brands grow through smarter social marketing. We build systems that work, so you can rest easy knowing your growth is always in motion.",
 };
 
