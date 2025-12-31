@@ -1,0 +1,197 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import React from "react";
+import {
+  Autoplay,
+  EffectCoverflow,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css";
+import "swiper/css/effect-cards";
+
+import { cn } from "@/lib/utils";
+import { CARDS } from "../../../../public/assets/images/images";
+
+const Skiper47 = () => {
+  const images = [
+    {
+      src: '../../../../public/assets/images/images/3d4.png',
+      alt: "Illustrations by my fav AarzooAly",
+    },
+    {
+      src: "/images/x.com/13.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+    },
+    {
+      src: "/images/x.com/32.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+    },
+    {
+      src: "/images/x.com/20.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+    },
+    {
+      src: "/images/x.com/21.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+    },
+    {
+      src: "/images/x.com/19.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+    },
+  ];
+
+  return (
+    <div className="flex h-full w-full items-center justify-center overflow-hidden ">
+      <Carousel_001 className="" images={images} showPagination loop />
+    </div>
+  );
+};
+
+export { Skiper47 };
+
+const Carousel_001 = ({
+  images,
+  className,
+  showPagination = false,
+  showNavigation = false,
+  loop = true,
+  autoplay = false,
+  spaceBetween = 80,
+}: {
+  images: { src: string; alt: string; link?: string }[];
+  className?: string;
+  showPagination?: boolean;
+  showNavigation?: boolean;
+  loop?: boolean;
+  autoplay?: boolean;
+  spaceBetween?: number;
+}) => {
+  const css = `
+  .Carousal_001 {
+    padding-bottom: 50px !important;
+  }
+  `;
+  return (
+    <motion.div
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{
+        duration: 0.3,
+        delay: 0.5,
+      }}
+      className={cn("w-3xl lg:w-6xl relative", className)}
+    >
+      <style>{css}</style>
+
+      <Swiper
+        spaceBetween={spaceBetween}
+        autoplay={
+          autoplay
+            ? {
+                delay: 3500,
+                disableOnInteraction: false,
+              }
+            : false
+        }
+        effect="coverflow"
+        grabCursor={true}
+        centeredSlides={true}
+        loop={loop}
+        slidesPerView={2.43}
+        coverflowEffect={{
+          rotate: 0,
+          slideShadows: false,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={
+          showPagination
+            ? {
+                clickable: true,
+              }
+            : false
+        }
+        navigation={
+          showNavigation
+            ? {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }
+            : false
+        }
+        className="Carousal_001"
+        modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index} className="!h-[350px] lg:!h-[600px] w-full border relative overflow-hidden rounded-2xl">
+            {/* Looping video background */}
+            <video
+              className="absolute inset-0 h-full w-full object-cover rounded-2xl"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/assets/images/card.mp4" type="video/mp4" />
+            </video>
+            {/* Image overlay */}
+            <img
+              className="h-full w-full object-contain relative z-10"
+              src={image.src}
+              alt={image.alt}
+            />
+            {/* Clickable arrow button */}
+            <a
+              href={image.link || "#"}
+              className="absolute left-1/2 transform -translate-x-1/2 z-20 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
+              style={{ top: '55%' }}
+            >
+              <img 
+                src="/assets/images/logo_light.png" 
+                alt="Meta Lab Marketing Studio" 
+                className="h-6 w-6 object-contain"
+              />
+            </a>
+          </SwiperSlide>
+        ))}
+        {showNavigation && (
+          <div>
+            <div className="swiper-button-next after:hidden">
+              <ChevronRightIcon className="h-6 w-6 text-white" />
+            </div>
+            <div className="swiper-button-prev after:hidden">
+              <ChevronLeftIcon className="h-6 w-6 text-white" />
+            </div>
+          </div>
+        )}
+      </Swiper>
+    </motion.div>
+  );
+};
+
+export { Carousel_001 };
+
+/**
+ * Skiper 47 Carousel_001 — React + Swiper
+ * Built with Swiper.js - Read docs to learn more https://swiperjs.com/
+ * Illustrations by AarzooAly - https://x.com/AarzooAly
+ *
+ * License & Usage:
+ * - Free to use and modify in both personal and commercial projects.
+ * - Attribution to Skiper UI is required when using the free version.
+ * - No attribution required with Skiper UI Pro.
+ *
+ * Feedback and contributions are welcome.
+ *
+ * Author: @gurvinder-singh02
+ * Website: https://gxuri.in
+ * Twitter: https://x.com/Gur__vi
+ */
